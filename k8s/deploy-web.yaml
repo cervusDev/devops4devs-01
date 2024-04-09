@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: cervusdev/devops4devs-news:v3
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_DATABASE
+              value: news
+            - name: DB_USERNAME
+              value: newsuser
+            - name: DB_PASSWORD
+              value: newspwd
+            - name: DB_HOST
+              value: postgre
+            - name: AWS_ACCESS_KEY
+              value: "AKIA4MTWG6MUNU6JUSZ7"
+            - name: AWS_ACCESS_SECRET
+              value: "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"
+            - name: AWS_S3_BUCKET_NAME
+              value: devops4devs-files
+            - name: STORAGE_TYPE
+              value: s3
